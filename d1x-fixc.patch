@@ -1,0 +1,15 @@
+--- d1x/2d/2dsline.c.orig	1999-10-14 06:48:21.000000000 +0200
++++ d1x/2d/2dsline.c	2004-01-18 19:48:31.746835235 +0100
+@@ -131,8 +131,10 @@
+ void gr_linear_darken(ubyte * dest, int darkening_level, int count, ubyte * fade_table) {
+ 	register int i;
+ 
+-	for (i=0;i<count;i++)
+-		*dest=fade_table[(*dest++)+(darkening_level*256)];
++	for (i=0;i<count;i++) {
++		*dest=fade_table[(*dest)+(darkening_level*256)];
++		dest++;
++	}
+ }
+ #endif
+ 
