@@ -3,8 +3,8 @@ Summary(pl):	D1X - zmodyfikowana wersja Descenta 1
 Name:		d1x
 Version:	1.43
 %define sver	%(echo %{version} | tr -d .)
-Release:	1
-License:	non-commercial use only
+Release:	2
+License:	non-commercial
 Group:		X11/Applications/Games
 Source0:	ftp://pyropilots.org/pub/d1x/%{name}%{sver}sc.tar.bz2
 Patch0:		%{name}-config.patch
