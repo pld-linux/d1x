@@ -3,7 +3,7 @@ Summary(pl):	D1X - zmodyfikowana wersja Descenta 1
 Name:		d1x
 Version:	1.43
 %define sver	%(echo %{version} | tr -d .)
-Release:	3
+Release:	4
 License:	non-commercial
 Group:		X11/Applications/Games
 Source0:	ftp://pyropilots.org/pub/d1x/%{name}%{sver}sc.tar.bz2
@@ -11,6 +11,7 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-fix.patch
 Patch3:		%{name}-paths.patch
+Patch4:		%{name}-maths.patch
 URL:		http://d1x.warpcore.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel >= 1.1
@@ -134,6 +135,7 @@ lub pliki z danymi z wersji shareware umie¶ciæ w /usr/X11R6/share/d1x.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 mkdir lib
