@@ -1,0 +1,146 @@
+--- d1x/include/vecmat.h.orig	Tue Jun 15 00:02:28 1999
++++ d1x/include/vecmat.h	Sat Oct 12 02:00:57 2002
+@@ -247,8 +247,8 @@
+ 
+ #ifdef __WATCOMC__
+ #pragma aux vm_vec_make "*_" parm [eax] [edx] [ebx] [ecx] value [eax] modify exact [] = \
+-"mov 0[eax],edx" \ 
+-"mov 4[eax],ebx" \ 
++"mov 0[eax],edx" \
++"mov 4[eax],ebx" \
+ "mov 8[eax],ecx";
+ 
+ #endif
+@@ -258,8 +258,8 @@
+ 
+ #ifdef __WATCOMC__
+ #pragma aux vm_angvec_make "*_" parm [eax] [dx] [bx] [cx] value [eax] modify exact [] = \
+-"mov 0[eax],dx" \ 
+-"mov 2[eax],bx" \ 
++"mov 0[eax],dx" \
++"mov 2[eax],bx" \
+ "mov 4[eax],cx";
+ 
+ #endif
+@@ -470,20 +470,20 @@
+ #ifdef INLINE
+ #ifdef __WATCOMC__
+ #pragma aux vm_vec_dotprod parm [esi] [edi] value [eax] modify exact [eax ebx ecx edx] = \
+-"mov	eax,[esi]" \ 
+-"imul	dword ptr [edi]" \ 
+-"mov	ebx,eax" \ 
+-"mov	ecx,edx" \ 
+-\
+-"mov	eax,4[esi]" \ 
+-"imul	dword ptr 4[edi]" \ 
+-"add	ebx,eax" \ 
+-"adc	ecx,edx" \ 
+-\
+-"mov	eax,8[esi]" \ 
+-"imul	dword ptr 8[edi]" \ 
+-"add	eax,ebx" \ 
+-"adc	edx,ecx" \ 
++"mov	eax,[esi]" \
++"imul	dword ptr [edi]" \
++"mov	ebx,eax" \
++"mov	ecx,edx" \
++\
++"mov	eax,4[esi]" \
++"imul	dword ptr 4[edi]" \
++"add	ebx,eax" \
++"adc	ecx,edx" \
++\
++"mov	eax,8[esi]" \
++"imul	dword ptr 8[edi]" \
++"add	eax,ebx" \
++"adc	edx,ecx" \
+ \
+ "shrd	eax,edx,16";
+ 
+--- d1x/arch/linux/linuxnet.c.orig	Mon Feb  7 11:26:06 2000
++++ d1x/arch/linux/linuxnet.c	Sat Oct 12 02:03:10 2002
+@@ -1,5 +1,6 @@
+ 
+ #include "types.h"
++#include <string.h>
+ 
+ #include "ipx_drv.h"
+ #include "ipx_bsd.h"
+--- d1x/arch/linux/include/ukali.h.orig	Tue Jun 15 00:01:50 1999
++++ d1x/arch/linux/include/ukali.h	Sat Oct 12 02:03:39 2002
+@@ -69,4 +69,4 @@
+ int KaliSendPacket(int hand, char *data, int len, kaliaddr_ipx *to);
+ int KaliReceivePacket(int hand, char *data, int len, kaliaddr_ipx *from);
+ 
+-#endif  __UKALI_H__
++#endif
+--- d1x/main/ip_base.h.orig	Wed Mar  1 10:21:46 2000
++++ d1x/main/ip_base.h	Sat Oct 12 02:10:39 2002
+@@ -5,9 +5,9 @@
+ #ifndef ___IP_BASE_H
+ #define ___IP_BASE_H
+ 
+-#include <map.h>
+-#include <list.h>
+-#include <algo.h>
++#include <map>
++#include <list>
++#include <algorithm>
+ extern "C" {
+ #include "ip_basec.h"
+ #include "fix.h"
+@@ -17,6 +17,8 @@
+ #include "timer.h"
+ }
+ 
++using namespace std;
++
+ class ip_addr;//prototype for arch_ip_queryhost
+ 
+ #include "ipclient.h"
+--- d1x/arch/sdl/digi.c.orig	Thu May 25 03:11:50 2000
++++ d1x/arch/sdl/digi.c	Sat Oct 12 02:12:19 2002
+@@ -214,8 +214,8 @@
+      sldata = sl->samples;
+     }
+     v = *(sldata++) - 0x80;
+-    *(sp++) = mix8[ *sp + fixmul(v, vl) + 0x80 ];
+-    *(sp++) = mix8[ *sp + fixmul(v, vr) + 0x80 ];
++    *(sp) = mix8[ *sp + fixmul(v, vl) + 0x80 ]; sp++;
++    *(sp) = mix8[ *sp + fixmul(v, vr) + 0x80 ]; sp++;
+    }
+    sl->position = sldata - sl->samples;
+   }
+--- d1x/texmap/scanline.c.orig	Wed Dec  8 02:08:10 1999
++++ d1x/texmap/scanline.c	Sat Oct 12 02:13:27 2002
+@@ -86,7 +86,7 @@
+ 
+ 	fade = tmap_flat_shade_value<<8;
+ 	for (x= fx_xright-fx_xleft+1 ; x > 0; --x ) {
+-		*dest++ = gr_fade_table[ fade |(*dest)];
++		*dest = gr_fade_table[ fade |(*dest)]; dest++;
+ 	}
+ }
+ 
+--- d1x/main/game.c.orig	Sat Oct 12 02:13:49 2002
++++ d1x/main/game.c	Sat Oct 12 02:15:14 2002
+@@ -2710,7 +2710,7 @@
+ 
+ //DEFINE_CHEAT needs to be done this weird way since stupid c macros can't (portably) handle multiple args, nor can they realize that within {}'s should all be the same arg.  blah.
+ #define DEFINE_CHEAT(name) int cheat_ ## name ## _index;\
+-	ubyte cheat_ ## name ## []
++	ubyte cheat_ ## name []
+ 
+ DEFINE_CHEAT(frametime)={KEY_F, KEY_R, KEY_A, KEY_M, KEY_E, KEY_T, KEY_I, KEY_M, KEY_E};
+ int gr_renderstats=0;
+--- d1x/main/netlist.c.orig	Sat Oct 28 11:31:08 2000
++++ d1x/main/netlist.c	Sat Oct 12 02:18:28 2002
+@@ -297,7 +297,7 @@
+            if(game.flags & NETFLAG_ENABLE_ALT_VULCAN)
+                    info+=sprintf(info,"\n Alt Vulcan");
+ 	   info+=sprintf(info,"\n Banned");
+-#define NETFLAG_SHOW_BANNED(D,V) if (!(game.flags&NETFLAG_DO ## D)) {if (i>3) i=0; else i++; info+=sprintf(info,"%c " ## #V,i?sep0:'\n');b++;sep0=',';}
++#define NETFLAG_SHOW_BANNED(D,V) if (!(game.flags&NETFLAG_DO ## D)) {if (i>3) i=0; else i++; info+=sprintf(info,"%c " #V,i?sep0:'\n');b++;sep0=',';}
+ 	   NETFLAG_SHOW_BANNED(LASER,laser);
+ 	   NETFLAG_SHOW_BANNED(QUAD,quad);
+ 	   NETFLAG_SHOW_BANNED(VULCAN,vulcan);
