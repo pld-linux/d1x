@@ -1,0 +1,19 @@
+diff -uNr d1x.orig/maths/fixc.c d1x/maths/fixc.c
+--- d1x.orig/maths/fixc.c	Mon Oct 18 02:31:01 1999
++++ d1x/maths/fixc.c	Sun Aug 25 10:13:09 2002
+@@ -69,13 +69,13 @@
+ #include "error.h"
+ #include "maths.h"
+ 
+-#ifdef NO_FIX_INLINE
++/* #ifdef NO_FIX_INLINE
+ #ifdef _MSC_VER
+ #pragma message ("warning: FIX NOT INLINED")
+ #else
+ #warning "FIX NOT INLINED"
+ #endif
+-#endif
++#endif */
+ 
+ extern ubyte guess_table[];
+ extern short sincos_table[];
