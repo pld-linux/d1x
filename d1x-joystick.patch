@@ -1,0 +1,10 @@
+--- d1x/arch/linux/include/joystick.h.orig	1999-06-15 00:01:49.000000000 +0200
++++ d1x/arch/linux/include/joystick.h	2004-01-18 19:00:52.424290616 +0100
+@@ -8,7 +8,6 @@
+  */
+ 
+ #include <asm/types.h>
+-#include <linux/module.h>
+ 
+ /*
+  * Version
