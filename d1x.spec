@@ -3,7 +3,7 @@ Summary(pl):	D1X - zmodyfikowana wersja Descenta 1
 Name:		d1x
 Version:	1.43
 %define sver	%(echo %{version} | tr -d .)
-Release:	2
+Release:	3
 License:	non-commercial
 Group:		X11/Applications/Games
 Source0:	ftp://pyropilots.org/pub/d1x/%{name}%{sver}sc.tar.bz2
@@ -14,11 +14,9 @@ Patch3:		%{name}-paths.patch
 URL:		http://d1x.warpcore.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel >= 1.1
-BuildRequires:	kdelibs-devel
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
-BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -149,14 +147,14 @@ echo "BIGENDIAN = 1" >> defines.in
 cp -f defines.in defines.mak
 echo "SDL_IO = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\"" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
 	SDLROOTDIR=/usr/X11R6
 mv -f ?1x143 d1x-sdl-full
 
 %{__make} clean
 echo "SHAREWARE = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\"" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
 	SDLROOTDIR=/usr/X11R6
 mv -f ?1x143sh d1x-sdl-share
 
@@ -164,14 +162,14 @@ mv -f ?1x143sh d1x-sdl-share
 cp -f defines.in defines.mak
 echo "SDLGL_IO = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\"" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
 	SDLROOTDIR=/usr/X11R6
 mv -f ?1x143_ogl d1x-gl-full
 
 %{__make} clean
 echo "SHAREWARE = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\"" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
 	SDLROOTDIR=/usr/X11R6
 mv -f ?1x143sh_ogl d1x-gl-share
 
