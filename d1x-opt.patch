@@ -1,0 +1,14 @@
+--- d1x/rules.mak.orig	Thu Nov  2 04:17:27 2000
++++ d1x/rules.mak	Sun May 19 01:00:44 2002
+@@ -45,9 +45,9 @@
+ LINKLIBS += -lm
+ endif
+ ifdef DEBUG
+-CFLAGS = -g -c -Wall -O -funsigned-char -I$(TOPDIR)/include
++CFLAGS = -c -Wall $(OPTFLAGS) -funsigned-char -I$(TOPDIR)/include
+ else #!DEBUG
+-CFLAGS = -g -c -Wall -O3  -funsigned-char -I$(TOPDIR)/include -DNDEBUG
++CFLAGS = -c -Wall $(OPTFLAGS) -funsigned-char -I$(TOPDIR)/include -DNDEBUG
+ ifndef DEBUGABLE
+ CFLAGS += -fomit-frame-pointer
+ endif #!DEBUGABLE

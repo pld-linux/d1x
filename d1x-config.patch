@@ -1,0 +1,48 @@
+--- d1x/defines.in.orig	Mon Jun 19 23:26:12 2000
++++ d1x/defines.in	Sun Jun  2 01:18:27 2002
+@@ -5,7 +5,7 @@
+ #NO_ASM = 1
+ 
+ # MAKE_EDITOR:  build editor into game  be sure to comment RELEASE
+-#MAKE_EDITOR = 1
++#MAKE_EDITOR = 1 # not enabled by default - causes SEGVs...
+ 
+ # DEBUG:	enable asserts, int3, etc. and include debugger data
+ #DEBUG = 1
+@@ -35,15 +35,15 @@
+ #SHAREWARE = 1
+ 
+ # RELEASE:      release build.   removes debug/editor things
+-RELEASE = 1
++#RELEASE = 1
+ 
+ # environment
+-ENV_DJGPP = 1
++#ENV_DJGPP = 1
+ #ENV_DJGPP_REALDOS =1
+ #ENV_MINGW32 = 1
+ #ENV_CYGWIN = 1
+ #ENV_MSVC = 1
+-#ENV_LINUX = 1
++ENV_LINUX = 1
+ 
+ # if compiling with Cygwin, you need extra mingw compatible c++ libraries (see compile.txt)
+ #MINGW_EXTRA = /Cygnus/mingw/
+@@ -79,7 +79,7 @@
+ #GLX_IO = 1
+ 
+ # linux audio options (chose one)
+-#SDL_AUDIO = 1
++SDL_AUDIO = 1
+ #ALSA_AUDIO = 1
+ 
+ # secondary compiler options
+@@ -93,7 +93,7 @@
+ #sound options for dos: choose which
+ #MIKMOD = 1     #MikMod digital, can be used with allg_midi
+ #ALLG_MIDI = 1  #Allegro midi, can be used with mikmod
+-ALLEGRO = 1     #Allegro for midi and digi, should be used alone
++#ALLEGRO = 1    #Allegro for midi and digi, should be used alone
+ 
+ #music options for linux:
+ #HMIPLAY = 1

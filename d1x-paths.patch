@@ -1,0 +1,38 @@
+--- d1x/main/piggy.c.orig	Tue Apr 18 03:17:58 2000
++++ d1x/main/piggy.c	Sun Jun  2 02:09:06 2002
+@@ -715,7 +715,7 @@
+ 		GameBitmapOffset[0] = 0;
+ 	}
+ 
+-        filename = "descent.pig";
++        filename = D1XDATAPATH "descent.pig";
+ 	
+ 	if ( FindArg( "-bigpig" ))
+ 		BigPig = 1;
+@@ -1138,7 +1138,7 @@
+ 	piggy_close_file();
+ 
+ 	mprintf( (0, "Creating DESCENT.PIG..." ));
+-        filename = "descent.pig";
++        filename = D1XDATAPATH "descent.pig";
+ 	if ( (i=FindArg( "-piggy" )) )	{
+ 		filename	= Args[i+1];
+ 		mprintf( (0, "Dumping alternate pigfile, '%s'\n", filename ));
+--- d1x/cfile/cfile.c.orig	Sun Sep  5 13:22:31 1999
++++ d1x/cfile/cfile.c	Sun Jun  2 02:09:30 2002
+@@ -277,13 +277,13 @@
+ 	}
+ 
+ 	if ( !Hogfile_initialized ) 	{
+-                cfile_init_hogfile( "descent.hog", HogFiles, &Num_hogfiles );
++                cfile_init_hogfile( D1XDATAPATH "descent.hog", HogFiles, &Num_hogfiles );
+ 		Hogfile_initialized = 1;
+ 	}
+ 
+ 	for (i=0; i<Num_hogfiles; i++ )	{
+ 		if ( !stricmp( HogFiles[i].name, name ))	{
+-			fp = cfile_get_filehandle( "descent.hog", "rb" );
++			fp = cfile_get_filehandle( D1XDATAPATH "descent.hog", "rb" );
+ 			if ( fp == NULL ) return NULL;
+ 			fseek( fp,  HogFiles[i].offset, SEEK_SET );
+ 			*length = HogFiles[i].length;

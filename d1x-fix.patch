@@ -1,0 +1,132 @@
+--- d1x/main/gameseg.h.orig	Sun Jun 25 10:34:29 2000
++++ d1x/main/gameseg.h	Sun Jun  2 01:25:12 2002
+@@ -170,7 +170,7 @@
+ segmasks get_seg_masks(vms_vector *checkp,int segnum,fix rad, char *calling_file, int calling_linenum);
+ 
+ //this macro returns true if the segnum for an object is correct
+-#define check_obj_seg(obj) (get_seg_masks(&(obj)->pos,(obj)->segnum,0).centermask == 0)
++#define check_obj_seg(obj) (get_seg_masks(&(obj)->pos,(obj)->segnum,0,__FILE__,__LINE__).centermask == 0)
+ 
+ //Tries to find a segment for a point, in the following way:
+ // 1. Check the given segment
+--- d1x/main/gamesave.c.orig	Thu Sep  2 15:50:13 1999
++++ d1x/main/gamesave.c	Sun Jun  2 01:30:58 2002
+@@ -302,6 +302,7 @@
+ #include "inferno.h"
+ #ifdef EDITOR
+ #include "editor/editor.h"
++#include "strutil.h"
+ #endif
+ #include "error.h"
+ #include "object.h"
+--- d1x/editor/med.c.orig	Tue Jun 15 00:03:43 1999
++++ d1x/editor/med.c	Sun Jun  2 01:33:50 2002
+@@ -765,7 +765,7 @@
+ 
+ int DosShell()
+ {
+-	int ok, w, h;
++	int w, h;
+ 	grs_bitmap * save_bitmap;
+ 
+ 	// Save the current graphics state.
+--- d1x/editor/autosave.c.orig	Tue Jun 15 00:02:47 1999
++++ d1x/editor/autosave.c	Sun Jun  2 01:35:05 2002
+@@ -130,6 +130,7 @@
+ #include "mono.h"
+ #include "u_mem.h"
+ #include "ui.h"
++#include "strutil.h"
+ 
+ #define AUTOSAVE_PERIOD 5			// Number of minutes for timed autosave
+ 
+--- d1x/editor/eobject.c.orig	Tue Jun 15 00:03:00 1999
++++ d1x/editor/eobject.c	Sun Jun  2 01:36:22 2002
+@@ -569,7 +569,7 @@
+ 	int segnum;
+ 
+ 	for (segnum=0;segnum <= Highest_segment_index; segnum++) {
+-		segmasks	result = get_seg_masks(&obj->pos,segnum,0);
++		segmasks	result = get_seg_masks(&obj->pos,segnum,0,__FILE__,__LINE__);
+ 		if (result.centermask == 0) {
+ 			int	fate;
+ 			fvi_info	hit_info;
+@@ -604,7 +604,7 @@
+ //	Return 0 if object is in expected segment, else return 1
+ int verify_object_seg(object *objp, vms_vector *newpos)
+ {
+-	segmasks	result = get_seg_masks(newpos, objp->segnum, objp->size);
++	segmasks	result = get_seg_masks(newpos, objp->segnum, objp->size, __FILE__, __LINE__);
+ 
+ 	if (result.facemask == 0)
+ 		return 0;
+@@ -974,7 +974,7 @@
+ {
+ 	object	*objp = &Objects[objnum];
+ 
+-	segmasks	result = get_seg_masks(newpos, objp->segnum, objp->size);
++	segmasks	result = get_seg_masks(newpos, objp->segnum, objp->size, __FILE__, __LINE__);
+ 
+ 	if (result.facemask == 0) {
+ 		//mprintf((0, "Object #%i moved from (%7.3f %7.3f %7.3f) to (%7.3f %7.3f %7.3f)\n", objnum, f2fl(objp->pos.x), f2fl(objp->pos.y), f2fl(objp->pos.z), f2fl(newpos->x), f2fl(newpos->y), f2fl(newpos->z)));
+--- d1x/editor/kgame.c.orig	Tue Jun 15 00:03:24 1999
++++ d1x/editor/kgame.c	Sun Jun  2 01:37:10 2002
+@@ -177,7 +177,7 @@
+ 			Perm_player_segnum = -1;
+ 
+ 		if (Perm_player_segnum!=-1) {
+-			if (get_seg_masks(&Perm_player_position,Perm_player_segnum,0).centermask==0) {
++			if (get_seg_masks(&Perm_player_position,Perm_player_segnum,0,__FILE__,__LINE__).centermask==0) {
+ 				ConsoleObject->pos = Perm_player_position;
+ 				obj_relink(ConsoleObject-Objects,Perm_player_segnum);
+ 				ConsoleObject->orient = Perm_player_orient;
+--- d1x/editor/segment.c.orig	Thu Sep  2 15:37:06 1999
++++ d1x/editor/segment.c	Sun Jun  2 01:38:12 2002
+@@ -2223,7 +2223,7 @@
+ 
+ 	for (i=0;i<=Highest_segment_index; i++) {
+ 		if (i != segnum) {
+-			masks = get_seg_masks(&segcenter, i, 0);
++			masks = get_seg_masks(&segcenter, i, 0, __FILE__, __LINE__);
+ 			if (masks.centermask == 0) {
+ 				mprintf((0, "Segment %i center is contained in segment %i\n", segnum, i));
+ 				continue;
+@@ -2234,7 +2234,7 @@
+ 
+ 				vm_vec_sub(&pdel, &Vertices[Segments[segnum].verts[v]], &segcenter);
+ 				vm_vec_scale_add(&presult, &segcenter, &pdel, (F1_0*15)/16);
+-				masks = get_seg_masks(&presult, i, 0);
++				masks = get_seg_masks(&presult, i, 0, __FILE__, __LINE__);
+ 				if (masks.centermask == 0) {
+ 					mprintf((0, "Segment %i near vertex %i is contained in segment %i\n", segnum, v, i));
+ 					break;
+--- d1x/editor/func.c.orig	Tue Jun 15 00:03:05 1999
++++ d1x/editor/func.c	Sun Jun  2 01:39:06 2002
+@@ -40,6 +40,7 @@
+ #include <string.h>
+ 
+ #include "func.h"
++#include "strutil.h"
+ 
+ #define MAX_PARAMS 10
+ 
+--- d1x/ui/mouse.c.orig	Tue Jun 15 00:14:39 1999
++++ d1x/ui/mouse.c	Sun Jun  2 01:41:23 2002
+@@ -55,7 +55,7 @@
+ 
+ #include <stdlib.h>
+ #ifdef __SDL__
+-#include "SDL.h"
++#include <SDL/SDL.h>
+ #endif
+ 
+ #include "u_mem.h"
+@@ -168,7 +168,7 @@
+ {   
+         int buttons,w,h;
+ #ifdef __LINUX__
+-	Uint16 new_x, new_y;
++	int new_x, new_y;
+ 	buttons = SDL_GetMouseState(&new_x,&new_y);
+ 	Mouse.dx = new_x - Mouse.x;
+ 	Mouse.dy = new_y - Mouse.y;
