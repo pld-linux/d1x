@@ -1,0 +1,20 @@
+--- d1x/main/game.c.orig	Sat Oct 28 11:31:08 2000
++++ d1x/main/game.c	Thu Aug 29 13:44:00 2002
+@@ -4677,7 +4677,7 @@
+ {
+ 	char	*i;
+ 
+-	mprintf((0, "Filling from %8x to %8x\n", start, end));
++	mprintf((0, "Filling from %p to %p\n", start, end));
+ 
+ 	for (i=start; i<end; i++)
+ 		*i = value;
+@@ -4691,7 +4691,7 @@
+ 	for (i=start; i<end; i++)
+ 		if (*i != value) {
+ 			Int3();		//	The nast triple aught six bug...we can smell it...contact Mike!
+-			Error("Oops, the nasty triple aught six bug.  Address == %8x\n", (int)i);
++			Error("Oops, the nasty triple aught six bug.  Address == %p\n", i);
+ 		}
+ 
+ }
