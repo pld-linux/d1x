@@ -15,6 +15,8 @@ Patch3:		%{name}-paths.patch
 Patch4:		%{name}-maths.patch
 Patch5:		%{name}-types.patch
 Patch6:		%{name}-gcc3.patch
+Patch7:		%{name}-joystick.patch
+Patch8:		%{name}-assert.patch
 URL:		http://d1x.warpcore.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel >= 1.1
@@ -139,6 +141,8 @@ lub pliki z danymi z wersji shareware umie¶ciæ w /usr/X11R6/share/d1x.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 mkdir lib
