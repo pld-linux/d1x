@@ -7,6 +7,7 @@ Release:	5
 License:	non-commercial
 Group:		X11/Applications/Games
 Source0:	ftp://pyropilots.org/pub/d1x/%{name}%{sver}sc.tar.bz2
+# Source0-md5:	fb52fd2990b2fadcea804238be648e53
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-fix.patch
