@@ -17,6 +17,7 @@ Patch5:		%{name}-types.patch
 Patch6:		%{name}-gcc3.patch
 Patch7:		%{name}-joystick.patch
 Patch8:		%{name}-assert.patch
+Patch9:		%{name}-fixc.patch
 URL:		http://d1x.warpcore.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel >= 1.1
@@ -143,6 +144,7 @@ lub pliki z danymi z wersji shareware umie¶ciæ w /usr/X11R6/share/d1x.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 mkdir lib
@@ -156,30 +158,38 @@ echo "BIGENDIAN = 1" >> defines.in
 cp -f defines.in defines.mak
 echo "SDL_IO = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
-	SDLROOTDIR=/usr/X11R6
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	LFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main"
 mv -f ?1x143 d1x-sdl-full
 
 %{__make} clean
 echo "SHAREWARE = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
-	SDLROOTDIR=/usr/X11R6
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	LFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main"
 mv -f ?1x143sh d1x-sdl-share
 
 %{__make} clean
 cp -f defines.in defines.mak
 echo "SDLGL_IO = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
-	SDLROOTDIR=/usr/X11R6
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	LFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main"
 mv -f ?1x143_ogl d1x-gl-full
 
 %{__make} clean
 echo "SHAREWARE = 1" >> defines.mak
 %{__make} \
-	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main" \
-	SDLROOTDIR=/usr/X11R6
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	LFLAGS="%{rpmldflags} -L/usr/X11R6/%{_lib}" \
+	OPTFLAGS="%{rpmcflags} -DD1XDATAPATH=\\\"%{_datadir}/d1x/\\\" -I../../main"
 mv -f ?1x143sh_ogl d1x-gl-share
 
 %install
