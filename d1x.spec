@@ -14,9 +14,11 @@ Patch3:		%{name}-paths.patch
 URL:		http://d1x.warpcore.org/
 BuildRequires:	OpenGL-devel
 BuildRequires:	SDL-devel >= 1.1
+BuildRequires:	kdelibs-devel
 %ifarch %{ix86}
 BuildRequires:	nasm
 %endif
+BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
