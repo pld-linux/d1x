@@ -3,7 +3,7 @@ Summary(pl):	D1X - zmodyfikowana wersja Descenta 1
 Name:		d1x
 Version:	1.43
 %define sver	%(echo %{version} | tr -d .)
-Release:	5
+Release:	6
 License:	non-commercial
 Group:		X11/Applications/Games
 Source0:	ftp://pyropilots.org/pub/d1x/%{name}%{sver}sc.tar.bz2
@@ -22,7 +22,6 @@ BuildRequires:	SDL-devel >= 1.1
 BuildRequires:	nasm
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
 
 %define		_noautoreqdep	libGL.so.1 libGLU.so.1
 
