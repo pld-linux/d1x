@@ -1,5 +1,5 @@
 Summary:	D1X - modified version of Descent 1
-Summary(pl.UTF-8):   D1X - zmodyfikowana wersja Descenta 1
+Summary(pl.UTF-8):	D1X - zmodyfikowana wersja Descenta 1
 Name:		d1x
 Version:	1.43
 %define sver	%(echo %{version} | tr -d .)
@@ -40,7 +40,7 @@ w trybie dla wielu graczy, jak i bez sieci.
 
 %package common
 Summary:	D1X - modified version of Descent 1
-Summary(pl.UTF-8):   D1X - zmodyfikowana wersja Descenta 1
+Summary(pl.UTF-8):	D1X - zmodyfikowana wersja Descenta 1
 Group:		X11/Applications/Games
 
 %description common
@@ -65,7 +65,7 @@ pełnej wersji) oraz właściwe pliki z danymi.
 
 %package sdl-full
 Summary:	D1X - SDL-based binary for full version of game
-Summary(pl.UTF-8):   D1X - używająca SDL binarka dla pełnej wersji gry
+Summary(pl.UTF-8):	D1X - używająca SDL binarka dla pełnej wersji gry
 Group:		X11/Applications/Games
 Provides:	d1x-full
 Requires:	%{name}-common = %{version}
@@ -82,7 +82,7 @@ umieścić w katalogu /usr/X11R6/share/d1x.
 
 %package sdl-shareware
 Summary:	D1X - SDL-based binary for shareware version of game
-Summary(pl.UTF-8):   D1X - używająca SDL binarka dla wersji shareware gry
+Summary(pl.UTF-8):	D1X - używająca SDL binarka dla wersji shareware gry
 Group:		X11/Applications/Games
 Provides:	d1x-shareware
 Requires:	%{name}-common = %{version}
@@ -99,7 +99,7 @@ lub pliki z danymi z wersji shareware umieścić w /usr/X11R6/share/d1x.
 
 %package gl-full
 Summary:	D1X - GL-based binary for full version of game
-Summary(pl.UTF-8):   D1X - używająca GL binarka dla pełnej wersji gry
+Summary(pl.UTF-8):	D1X - używająca GL binarka dla pełnej wersji gry
 Group:		X11/Applications/Games
 Provides:	d1x-full
 Requires:	%{name}-common = %{version}
@@ -117,7 +117,7 @@ umieścić w katalogu /usr/X11R6/share/d1x.
 
 %package gl-shareware
 Summary:	D1X - GL-based binary for shareware version of game
-Summary(pl.UTF-8):   D1X - używająca GL binarka dla wersji shareware gry
+Summary(pl.UTF-8):	D1X - używająca GL binarka dla wersji shareware gry
 Group:		X11/Applications/Games
 Provides:	d1x-shareware
 Requires:	%{name}-common = %{version}
