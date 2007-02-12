@@ -1,5 +1,5 @@
 Summary:	D1X - modified version of Descent 1
-Summary(pl):	D1X - zmodyfikowana wersja Descenta 1
+Summary(pl.UTF-8):   D1X - zmodyfikowana wersja Descenta 1
 Name:		d1x
 Version:	1.43
 %define sver	%(echo %{version} | tr -d .)
@@ -33,14 +33,14 @@ D1X is a modification of the Descent 1 source that was released by
 Parallax. It's mostly compatible with the Descent 1 v1.5, both in
 multiplayer and on the local machine.
 
-%description -l pl
-D1X to modyfikacja ¼róde³ Descenta 1 udostêpnionych przez Parallax.
-Jest w wiêkszo¶ci kompatybilny z Descentem 1 w wersji 1.5, zarówno
+%description -l pl.UTF-8
+D1X to modyfikacja ÅºrÃ³deÅ‚ Descenta 1 udostÄ™pnionych przez Parallax.
+Jest w wiÄ™kszoÅ›ci kompatybilny z Descentem 1 w wersji 1.5, zarÃ³wno
 w trybie dla wielu graczy, jak i bez sieci.
 
 %package common
 Summary:	D1X - modified version of Descent 1
-Summary(pl):	D1X - zmodyfikowana wersja Descenta 1
+Summary(pl.UTF-8):   D1X - zmodyfikowana wersja Descenta 1
 Group:		X11/Applications/Games
 
 %description common
@@ -53,19 +53,19 @@ will need also one of game binaries (either SDL or GL version)
 appropriate for your versions of game data (shareware or full) and
 actual game data files.
 
-%description common -l pl
-D1X to modyfikacja ¼róde³ Descenta 1 udostêpnionych przez Parallax.
-Jest w wiêkszo¶ci kompatybilny z Descentem 1 w wersji 1.5, zarówno
+%description common -l pl.UTF-8
+D1X to modyfikacja ÅºrÃ³deÅ‚ Descenta 1 udostÄ™pnionych przez Parallax.
+Jest w wiÄ™kszoÅ›ci kompatybilny z Descentem 1 w wersji 1.5, zarÃ³wno
 w trybie dla wielu graczy, jak i bez sieci.
 
-Ten pakiet zawiera tylko wspólne pliki dla wszystkich wersji D1X.
-Oprócz niego potrzebny jest który¶ z pakietów z binark± gry (w wersji
+Ten pakiet zawiera tylko wspÃ³lne pliki dla wszystkich wersji D1X.
+OprÃ³cz niego potrzebny jest ktÃ³ryÅ› z pakietÃ³w z binarkÄ… gry (w wersji
 SDL lub GL) odpowiedni dla posiadanych danych gry (shareware lub
-pe³nej wersji) oraz w³a¶ciwe pliki z danymi.
+peÅ‚nej wersji) oraz wÅ‚aÅ›ciwe pliki z danymi.
 
 %package sdl-full
 Summary:	D1X - SDL-based binary for full version of game
-Summary(pl):	D1X - u¿ywaj±ca SDL binarka dla pe³nej wersji gry
+Summary(pl.UTF-8):   D1X - uÅ¼ywajÄ…ca SDL binarka dla peÅ‚nej wersji gry
 Group:		X11/Applications/Games
 Provides:	d1x-full
 Requires:	%{name}-common = %{version}
@@ -75,14 +75,14 @@ This package contains D1X binary compiled with SDL support for full
 version of game. You will need to place full (commercial) version of
 game data files in /usr/X11R6/share/d1x.
 
-%description sdl-full -l pl
-Ten pakiet zawiera binarkê D1X skompilowan± z obs³ug± SDL dla pe³nej
-wersji gry. Pliki z danymi z pe³nej (komercyjnej) wersji gry trzeba
-umie¶ciæ w katalogu /usr/X11R6/share/d1x.
+%description sdl-full -l pl.UTF-8
+Ten pakiet zawiera binarkÄ™ D1X skompilowanÄ… z obsÅ‚ugÄ… SDL dla peÅ‚nej
+wersji gry. Pliki z danymi z peÅ‚nej (komercyjnej) wersji gry trzeba
+umieÅ›ciÄ‡ w katalogu /usr/X11R6/share/d1x.
 
 %package sdl-shareware
 Summary:	D1X - SDL-based binary for shareware version of game
-Summary(pl):	D1X - u¿ywaj±ca SDL binarka dla wersji shareware gry
+Summary(pl.UTF-8):   D1X - uÅ¼ywajÄ…ca SDL binarka dla wersji shareware gry
 Group:		X11/Applications/Games
 Provides:	d1x-shareware
 Requires:	%{name}-common = %{version}
@@ -92,14 +92,14 @@ This package contains D1X binary compiled with SDL support for full
 version of game. You will need to install d1x-data-shareware package
 or place shareware version of game data files in /usr/X11R6/share/d1x.
 
-%description sdl-shareware -l pl
-Ten pakiet zawiera binarkê D1X skompilowan± z obs³ug± SDL dla wersji
-shareware gry. Trzeba do niego doinstalowaæ pakiet d1x-data-shareware
-lub pliki z danymi z wersji shareware umie¶ciæ w /usr/X11R6/share/d1x.
+%description sdl-shareware -l pl.UTF-8
+Ten pakiet zawiera binarkÄ™ D1X skompilowanÄ… z obsÅ‚ugÄ… SDL dla wersji
+shareware gry. Trzeba do niego doinstalowaÄ‡ pakiet d1x-data-shareware
+lub pliki z danymi z wersji shareware umieÅ›ciÄ‡ w /usr/X11R6/share/d1x.
 
 %package gl-full
 Summary:	D1X - GL-based binary for full version of game
-Summary(pl):	D1X - u¿ywaj±ca GL binarka dla pe³nej wersji gry
+Summary(pl.UTF-8):   D1X - uÅ¼ywajÄ…ca GL binarka dla peÅ‚nej wersji gry
 Group:		X11/Applications/Games
 Provides:	d1x-full
 Requires:	%{name}-common = %{version}
@@ -110,14 +110,14 @@ This package contains D1X binary compiled with GL support for full
 version of game. You will need to place full (commercial) version of
 game data files in /usr/X11R6/share/d1x.
 
-%description gl-full -l pl
-Ten pakiet zawiera binarkê D1X skompilowan± z obs³ug± GL dla pe³nej
-wersji gry. Pliki z danymi z pe³nej (komercyjnej) wersji gry trzeba
-umie¶ciæ w katalogu /usr/X11R6/share/d1x.
+%description gl-full -l pl.UTF-8
+Ten pakiet zawiera binarkÄ™ D1X skompilowanÄ… z obsÅ‚ugÄ… GL dla peÅ‚nej
+wersji gry. Pliki z danymi z peÅ‚nej (komercyjnej) wersji gry trzeba
+umieÅ›ciÄ‡ w katalogu /usr/X11R6/share/d1x.
 
 %package gl-shareware
 Summary:	D1X - GL-based binary for shareware version of game
-Summary(pl):	D1X - u¿ywaj±ca GL binarka dla wersji shareware gry
+Summary(pl.UTF-8):   D1X - uÅ¼ywajÄ…ca GL binarka dla wersji shareware gry
 Group:		X11/Applications/Games
 Provides:	d1x-shareware
 Requires:	%{name}-common = %{version}
@@ -128,10 +128,10 @@ This package contains D1X binary compiled with GL support for full
 version of game. You will need to install d1x-data-shareware package
 or place shareware version of game data files in /usr/X11R6/share/d1x.
 
-%description gl-shareware -l pl
-Ten pakiet zawiera binarkê D1X skompilowan± z obs³ug± GL dla wersji
-shareware gry. Trzeba do niego doinstalowaæ pakiet d1x-data-shareware
-lub pliki z danymi z wersji shareware umie¶ciæ w /usr/X11R6/share/d1x.
+%description gl-shareware -l pl.UTF-8
+Ten pakiet zawiera binarkÄ™ D1X skompilowanÄ… z obsÅ‚ugÄ… GL dla wersji
+shareware gry. Trzeba do niego doinstalowaÄ‡ pakiet d1x-data-shareware
+lub pliki z danymi z wersji shareware umieÅ›ciÄ‡ w /usr/X11R6/share/d1x.
 
 %prep
 %setup -q -n %{name}
